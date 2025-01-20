@@ -1,2 +1,2 @@
-# FNBTKRZ5-portofolio
-My Portofolio. :D
+# This is FNBTKRZ5's Portofolio
+A Portofolio. :D
