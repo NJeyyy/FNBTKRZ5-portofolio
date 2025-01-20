@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <style>
+      :root {
+        --primary-light-color: #3838ff;
+        --secondary-light-color: #85d6d6;
+        --accent-light-color: #4bbb3a;
+        --background-light-color: #fff;
+      }
+      body[theme-mode="light"] {
+        background-color: var(--background-light-color);
+        --primary-color: var(--primary-light-color);
+        --secondary-color: var(--secondary-light-color);
+        --accent-color: var(--accent-light-color);
+        --text-secondary-color: #fff;
+        --text-primary-color: #000;
+        --background-color: var(--background-light-color);
+        margin:0;
+      }
+
+      #top-header {
+        display:flex; z-index:999999;
+        border-bottom: var(--text-primary-color) solid 1px;
+        background-color: var(--background-color);
+      }
+      #top-header nav {
+        margin-left:auto;
+        margin-right: 2rem;
+      }
+      #top-header a{
+        float:left; text-decoration:none;
+        color: var(--text-primary-color);
+        padding: .6rem 1.2rem;
+      }
+      #top-header a:hover {
+        background: var(--primary-color);
+        color: var(--text-secondary-color);
+      }
+
+      @media (min-width:600px) { /*desktop view*/
+        body {
+          font-size:17px;
+        }
+        #top-header {
+          position:sticky; top:0;
+        }
+      }
+      @media (max-width:600px) { /*mobile view*/}
+    </style>
+    <title>FNBTKRZ's Portofolio</title>
+    <link rel="icon" type="image/x-icon" href=""/>
+  </head>
+  <body theme-mode="light">
+    <div id="top-header">
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+      </nav>
+    </div>
+    <div id="mainGround"></div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.5.13/vue.global.min.js"
+     integrity="sha512-rgrFBaGRHjj2cy6RtcWr21S4oSicNV/Y3qACuRZZIVdi6hGIXOKZeFTtzFFZCJ7cI4OrwbY7/FGVvaJ5hXJdJg=="
+     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     <script src="main.js"></script>
+  </body>
+</html>

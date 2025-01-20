@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    "*.embeddedhtml": "html",
+    "winsock2.h": "c"
+  },
+  "C_Cpp.errorSquiggles": "disabled"
+}

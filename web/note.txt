@@ -1,0 +1,4 @@
+===SERVER INFO=======
+for linux version, you will need a C compiler.
+for windows version, you will need a Visual Studio installed, or atleast the build tools for the command line interface (if you only want that).
+^Alternative if you dont have enough space or just simply want an alternative: use termux, by connecting it from your phone to your pc. But you'll need OpenSSH installed and Adb.
