@@ -25,6 +25,11 @@ const char* get_mime_type(const char* path) {
 }
 
 int main() {
+  if (chdir("./web") != 0) {
+    perror("Error when changing the working directory.");
+    return 1;
+  }
+
   //creating socket
   int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
   if (serverSocket < 0) {
