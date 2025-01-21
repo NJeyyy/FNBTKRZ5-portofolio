@@ -12,6 +12,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+    - name: working directory of the web
+      run: cd web
     - name: Install GCC
       run: sudo apt-get install -y gcc
     - name: Compile server
