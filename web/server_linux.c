@@ -9,14 +9,19 @@
 #include <arpa/inet.h> //for htons(), its usually already being included in netinet/in.h, but for some. So.. good practice this if for :D
 
 #define BUFFER 1024 //1kb, is the standard
+#define MAX_CLIENTS 50
 
-const char *get_mime_type(const char *filename) {
-  if (strstr(filename, ".html")) return "text/html";
-  if (strstr(filename, ".css")) return "text/css";
-  if (strstr(filename, ".js")) return "application/javascript";
-  if (strstr(filename, ".png")) return "image/png";
-  if (strstr(filename, ".jpg") || strstr(filename, ".jpeg")) return "image/jpeg";
-  return "application/octet-stream";  // Default
+// Helper function to determine MIME type based on file extension
+const char* get_mime_type(const char* path) {
+    const char* ext = strrchr(path, '.');
+    if (!ext) return "application/octet-stream"; // Default MIME type
+    if (strcmp(ext, ".html") == 0) return "text/html";
+    if (strcmp(ext, ".css") == 0) return "text/css";
+    if (strcmp(ext, ".js") == 0) return "application/javascript";
+    if (strcmp(ext, ".jpg") == 0 || strcmp(ext, ".jpeg") == 0) return "image/jpeg";
+    if (strcmp(ext, ".png") == 0) return "image/png";
+    if (strcmp(ext, ".gif") == 0) return "image/gif";
+    return "application/octet-stream";
 }
 
 int main() {
@@ -55,15 +60,20 @@ int main() {
     if (recv_bytes > BUFFER - 1) recv_bytes = BUFFER - 1;
     buffer[recv_bytes] = '\0'; //make sure the buffer is null terminated?
 
-    //GET / [FILE]
-    char* rt = buffer + 5; //"GET / " have 5 indexs! so imma skipping them
-    *strchr(rt, ' ') = 0; //search for the " " (space) and change the space into null terminator
+    //get methods and route
+    char method[8], rt[256], mfile[256];
+    sscanf(buffer, "%7s %255s", method, rt);
 
 		//ROUTE MANAGEMENT!!=======================================
-    const char *mfile = rt;
-		if (strcmp(rt, "/") == 0) {
-			mfile = "/index.html"; //if the route is "/", then serve the index.html file by default!
-      /* mfile means main file, which what it gonna send to the server. (?) i am confusing myself */
+		if (strcmp(method, "GET", 3) == 0) {
+			if (strcmp(rt, "/") == 0) {
+				mfile = "/index.html"; //if the route is "/", then serve the index.html file by default!
+      	/* mfile means main file, which what it gonna send to the server. (?) i am confusing myself */
+			}
+			printf("Method: %s, Route: %s\n", method, route);
+		} else {
+			printf("Unsupported HTTP method: %s\n", method);
+			continue;
 		}
 
     int opend_f = open(mfile + 1, O_RDONLY); //+1 to skip the "/" :/
