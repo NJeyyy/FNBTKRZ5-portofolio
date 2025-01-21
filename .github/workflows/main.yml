@@ -15,6 +15,6 @@ jobs:
     - name: Install GCC
       run: sudo apt-get install -y gcc
     - name: Compile server
-      run: gcc -o server http_server_poll.c
+      run: gcc -o server server_linux.c
     - name: Run server
       run: ./server &
