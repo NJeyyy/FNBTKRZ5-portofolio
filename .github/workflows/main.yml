@@ -1,0 +1,20 @@
+name: Run Server
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # This allows manual triggers
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Install GCC
+      run: sudo apt-get install -y gcc
+    - name: Compile server
+      run: gcc -o server http_server_poll.c
+    - name: Run server
+      run: ./server &
